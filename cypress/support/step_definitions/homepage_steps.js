@@ -15,3 +15,8 @@ When(`I click on the contact us button`, ()=>{
     cy.get("#contact-us").invoke("removeAttr", "target").click();
     cy.get('[name="first_name"]').should("exist");
 })
+
+When(`I click on the Login Portal button`, () =>{
+    cy.get("#login-portal").invoke("removeAttr", "target").click();
+    cy.get('.bg-bubbles').should('be.visible');
+})
