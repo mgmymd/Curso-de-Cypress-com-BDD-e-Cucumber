@@ -48,3 +48,17 @@ Then('I type a word {string} and number {int} within the comment input field', (
      cy.get('textarea[name="message"]')
           .type(comment + " " + numberComment);
 })
+
+When('I type a first name {word} and a last name {string}', (firstName, lastName) => {
+     cy.get('[name="first_name"]').type(firstName);
+     cy.get('[name="last_name"]').type(lastName);
+})
+
+When('I type a {string} and a comment {string}', (emailAddress, comment) => {
+     cy.get('[name="email"]').type(emailAddress);
+     cy.get('textarea[name="message"]').type(comment);
+})
+
+Then('I should be presented with a header text {string}', (message) =>{
+     cy.xpath("//h1 | //body").contains(message);
+})
