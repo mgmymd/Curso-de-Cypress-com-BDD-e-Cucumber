@@ -1,6 +1,8 @@
 ///<reference types="cypress" />
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
+let stub;
+
 When('I type the correct username {string}', (username)=>{
     cy.get('#text').type(username);
 })
@@ -10,25 +12,25 @@ When('I type the correct password {string}',(password)=>{
 })
 
 When('I click on the Login button', ()=>{
-    cy.get('#login-button').click()
+    stub = cy.stub();
+    cy.on('window:alert', stub);
+
+    cy.get('#login-button').click();
 })
 
 Then('I should be presented with a pop up with a successful login message', ()=>{
-    // const stub = cy.stub().as('loginMessage')
-    // cy.on('window:alert', stub).then(() =>{
-    //     expect(stub.getCall(0)).to.be.calledWith('validation succeeded')
-    // })
+    expect(stub).to.have.been.calledWith('validation succeeded');
 })
 
 Then('I should be presented with a pop up with a unsuccessful login message', ()=>{
-
+    expect(stub).to.have.been.calledWith('validation failed');
 })
 
-When('I type an username {string} and a password {string}', (username, password) =>{
+When('I type an username {} and a password {}', (username, password) =>{
     cy.get('#text').type(username);
     cy.get('#password').type(password);
 })
 
-Then('I should be presented with a pop up with login message {string}', (message) =>{
-
+Then('I should be presented with a alert box with login message {string}', (message) =>{
+    expect(stub).to.have.been.calledWith(message);
 })

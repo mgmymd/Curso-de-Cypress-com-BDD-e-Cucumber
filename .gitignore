@@ -18,3 +18,5 @@ cypress/results/
 # Classes notes
 .pdf
 *.pdf
+.txt
+*.txt

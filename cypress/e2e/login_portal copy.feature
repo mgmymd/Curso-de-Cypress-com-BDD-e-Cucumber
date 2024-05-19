@@ -17,10 +17,11 @@ Scenario: Validate unsuccessful Login at Login Portal page
     Then I should be presented with a pop up with a unsuccessful login message 
 
 Scenario Outline: Validate Login Portal page - Using specific data with scenario outlines
-    And I type an username '<username>' and a password '<password>'
+    And I type an username <username> and a password <password>
     And I click on the Login button
-    Then I should be presented with a pop up with login message '<message>'
+    Then I should be presented with a alert box with login message '<message>'
 
+Examples:
     |username   |password          |message                 |
     |webdriver  |webdriver123      |validation succeeded    |
     |webdriver  |aaaaaaaaaaah      |validation failed       |
