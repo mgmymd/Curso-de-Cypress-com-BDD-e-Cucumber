@@ -20,3 +20,5 @@ cypress/results/
 *.pdf
 .txt
 *.txt
+.html
+*.html

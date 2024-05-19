@@ -4,7 +4,16 @@
   "description": "Cypress Cucumber Automation Framework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "full-regression-headed-firefox": "cypress run --headed --browser firefox --spec 'cypress/e2e/*.feature'",
+    "full-regression-headedless-firefox": "cypress run --browser firefox --spec 'cypress/e2e/*.feature'",
+    "contact-us-tests-headed-firefox": "cypress run --headed --browser firefox --spec 'cypress/e2e/contact_us.feature'",
+    "contact-us-tests-headed":"cypress run -e TAGS=\"@contact-us\" --headed",
+    "contact-us-tests-headedless":"cypress run -e TAGS=\"@contact-us\"",
+    "login-portal-tests-headed":"cypress run -e TAGS=\"@login\" --headed",
+    "login-portal-and-smoke-pack-tests-headed": "cypress run -e TAGS=\"@smoke or @login\" --headed",
+    "smoke-pach-headed": "cypress run -e TAGS=\"@smoke\" --headed",
+    "regression-pack-headed": "cypress run -e TAGS=\"@regression and not @smoke\" --headed"
   },
   "author": "Meg",
   "license": "ISC",
@@ -16,6 +25,14 @@
     "ts-loader": "^9.5.1"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/support/step_definitions/**/*.js"
+    "stepDefinitions": "cypress/support/step_definitions/**/*.js",
+    "html": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-html/cucumber-report.html"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-ndjson/cucumber-report.html"
+    }
   }
 }
