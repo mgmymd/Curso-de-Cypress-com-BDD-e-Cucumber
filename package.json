@@ -8,20 +8,22 @@
     "full-regression-headed-firefox": "cypress run --headed --browser firefox --spec 'cypress/e2e/*.feature'",
     "full-regression-headedless-firefox": "cypress run --browser firefox --spec 'cypress/e2e/*.feature'",
     "contact-us-tests-headed-firefox": "cypress run --headed --browser firefox --spec 'cypress/e2e/contact_us.feature'",
-    "contact-us-tests-headed":"cypress run -e TAGS=\"@contact-us\" --headed",
-    "contact-us-tests-headedless":"cypress run -e TAGS=\"@contact-us\"",
-    "login-portal-tests-headed":"cypress run -e TAGS=\"@login\" --headed",
-    "login-portal-and-smoke-pack-tests-headed": "cypress run -e TAGS=\"@smoke or @login\" --headed",
-    "smoke-pach-headed": "cypress run -e TAGS=\"@smoke\" --headed",
-    "regression-pack-headed": "cypress run -e TAGS=\"@regression and not @smoke\" --headed"
+    "contact-us-tests-headed": "cypress run -e TAGS=\"@contact-us\" --headed",
+    "contact-us-tests-headedless": "cypress run -e TAGS=\"@contact-us\"",
+    "login-portal-tests-headed": "cypress run -e TAGS=\"@login\" --headed && node cucumber-html-report.js",
+    "login-portal-and-smoke-pack-tests-headed": "cypress run -e TAGS=\"@smoke or @login\" --headed && node cucumber-html-report.js",
+    "smoke-pach-headed": "cypress run -e TAGS=\"@smoke\" --headed && node cucumber-html-report.js",
+    "regression-pack-headed": "cypress run -e TAGS=\"@regression and not @smoke\" --headed && node cucumber-html-report.js"
   },
   "author": "Meg",
   "license": "ISC",
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^20.0.5",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
-    "cypress": "^12.14.0",
+    "cypress": "^13.9.0",
+    "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
     "cypress-xpath": "^2.0.1",
+    "multiple-cucumber-html-reporter": "^3.6.2",
     "ts-loader": "^9.5.1"
   },
   "cypress-cucumber-preprocessor": {
@@ -32,7 +34,12 @@
     },
     "messages": {
       "enabled": true,
-      "output": "cypress/reports/cucumber-ndjson/cucumber-report.html"
+      "output": "cypress/reports/cucumber-ndjson/cucumber-report.ndjson"
+    },
+    "json": {
+      "enabled": true,
+      "formatter": "cucumber-json-formatter",
+      "output": "cypress/reports/cucumber-json/cucumber-report.json"
     }
   }
 }

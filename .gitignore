@@ -14,11 +14,10 @@ build/
 cypress/screenshots/
 cypress/videos/
 cypress/results/
+cypress/reports/
 
 # Classes notes
 .pdf
 *.pdf
 .txt
 *.txt
-.html
-*.html
