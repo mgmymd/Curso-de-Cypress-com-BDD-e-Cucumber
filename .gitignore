@@ -21,3 +21,7 @@ cypress/reports/
 *.pdf
 .txt
 *.txt
+
+# Jenkins
+.war
+*.war
